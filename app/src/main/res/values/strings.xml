@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">FitnessApp</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="facebook_app_id">701654833891571</string>
+    <string name="fb_login_protocol_scheme">fb701654833891571</string>
+    <string name="title_activity_maps">Map</string>
+    <!--for facebook login-->
+
+    <!--facebook login ends-->
+
+    <!--error messages-->
+
+</resources>
