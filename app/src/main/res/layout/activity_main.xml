@@ -26,6 +26,13 @@
         android:hint="Enter your destination"
         android:padding="12dp" />
 
+    <TextView
+        android:id="@+id/tvDistance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
     <Button
         android:id="@+id/bt_tack"
         style="@style/loginButton"
