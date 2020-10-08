@@ -53,13 +53,25 @@ public class ActivityLogin extends AppCompatActivity {
     private String TAG = "TAG";
     private GoogleSignInClient mGoogleSignInClient;
     private LoginButton login_button;
-
+    FirebaseAuth.AuthStateListener mAuthListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //for changing status bar icon colors
         mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    startActivity(new Intent(ActivityLogin.this, MainActivity.class));
+                } else
+                {
+                    // do something
+                }
+            }
+        };
         callbackManager = CallbackManager.Factory.create();
         FacebookSdk.sdkInitialize(getApplicationContext());
         initComponent();
@@ -70,6 +82,7 @@ public class ActivityLogin extends AppCompatActivity {
     }
 
     private void initComponent() {
+       loadingProgressBar = findViewById(R.id.loadingProgressBar);
         etEmail = findViewById(R.id.editTextEmail);
         etPassword = findViewById(R.id.editTextPassword);
         register = findViewById(R.id.register);
@@ -81,10 +94,7 @@ public class ActivityLogin extends AppCompatActivity {
         login_button.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Log.d(TAG, "onSuccess: " + loginResult);
-                handleFacebookToken(loginResult.getAccessToken());
-                Intent intent = new Intent(ActivityLogin.this, MainActivity.class);
-                startActivity(intent);
+                TastyToast.makeText(getApplicationContext(), "Comming soon ...", TastyToast.LENGTH_LONG, TastyToast.DEFAULT).show();
             }
 
             @Override
@@ -112,7 +122,7 @@ public class ActivityLogin extends AppCompatActivity {
     }
 
     private void signInUser() {
-        loadingProgressBar.setVisibility(View.VISIBLE);
+       loadingProgressBar.setVisibility(View.VISIBLE);
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
         if (email.isEmpty()) {
@@ -163,7 +173,7 @@ public class ActivityLogin extends AppCompatActivity {
                     FirebaseUser user = mAuth.getCurrentUser();
                     updateUI(user);
                 } else {
-                    Toast.makeText(getApplicationContext(), "sign in failed", Toast.LENGTH_LONG).show();
+                    TastyToast.makeText(getApplicationContext(), "Comming soon ...", TastyToast.LENGTH_LONG, TastyToast.DEFAULT).show();
                 }
             }
         });
@@ -210,7 +220,8 @@ public class ActivityLogin extends AppCompatActivity {
             }
         }
     }
-//    @Override
+
+    //    @Override
 //    public void onActivityResult(int requestCode, int resultCode, Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);
 //
@@ -234,17 +245,13 @@ public class ActivityLogin extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-//        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        if (currentUser != null) {
-//            Intent intent = new Intent(this, MainActivity.class);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            intent.putExtra("email", currentUser.getEmail());
-//            startActivity(intent);
-//            overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
-//        }
+        mAuth.addAuthStateListener(mAuthListener);
     }
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mAuth.removeAuthStateListener(mAuthListener);
+    }
     private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credential)

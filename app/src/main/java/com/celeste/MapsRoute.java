@@ -2,6 +2,8 @@ package com.celeste;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -31,11 +33,20 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.sdsmdg.tastytoast.TastyToast;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import utils.ViewAnimation;
 
 public class MapsRoute extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.OnConnectionFailedListener, RoutingListener {
@@ -51,16 +62,34 @@ public class MapsRoute extends FragmentActivity implements OnMapReadyCallback,
     Location myLocation = null;
     Location destinationLocation = null;
     boolean locationPermission = false;
+    FloatingActionButton fab_add, fab_save, fab_calculate, fab_show_route;
+    FirebaseFirestore db;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("landmark");
+    LocationHelper helper;
     //google map object
     private GoogleMap mMap;
     //polyline object
     private List<Polyline> polylines = null;
+    private View parent_view;
+    private View back_drop;
+    private boolean rotate = false;
+    private View lyt_save;
+    private View lyt_calc;
+    private View lyt_show_route;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps_route);
-
+        db = FirebaseFirestore.getInstance();
+        initComponents();
 
         //request location permission.
         requestPermision();
@@ -69,6 +98,89 @@ public class MapsRoute extends FragmentActivity implements OnMapReadyCallback,
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        onClickListeners();
+    }
+
+    private void initComponents() {
+        helper = new LocationHelper(0, 0);
+        parent_view = findViewById(android.R.id.content);
+        back_drop = findViewById(R.id.back_drop);
+        fab_save = findViewById(R.id.fab_save);
+        fab_add = findViewById(R.id.fab_add);
+        fab_calculate = findViewById(R.id.fab_calculate);
+        fab_show_route = findViewById(R.id.fab_show_route);
+        lyt_save = findViewById(R.id.lyt_save);
+        lyt_calc = findViewById(R.id.lyt_calc);
+        lyt_show_route = findViewById(R.id.lyt_show_route);
+        ViewAnimation.initShowOut(lyt_save);
+        ViewAnimation.initShowOut(lyt_calc);
+        ViewAnimation.initShowOut(lyt_show_route);
+        back_drop.setVisibility(View.GONE);
+    }
+
+    private void onClickListeners() {
+        fab_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleFabMode(v);
+            }
+        });
+        fab_calculate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (end != null) {
+                    CalculationByDistance(start, end);
+                } else {
+                    TastyToast.makeText(getApplicationContext(), "Please select your destination to calculate distance and time", TastyToast.LENGTH_LONG, TastyToast.CONFUSING).show();
+                }
+
+            }
+        });
+        fab_show_route.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Findroutes(start, end);
+                toggleFabMode(fab_add);
+            }
+        });
+        fab_save.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                toggleFabMode(fab_add);
+                myRef.setValue(helper).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            TastyToast.makeText(getApplicationContext(), "Your landmark has been saved", TastyToast.LENGTH_LONG, TastyToast.SUCCESS).show();
+                        } else {
+                            TastyToast.makeText(getApplicationContext(), "Your landmark has not been saved", TastyToast.LENGTH_LONG, TastyToast.SUCCESS).show();
+                        }
+                    }
+                });
+            }
+        });
+        back_drop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleFabMode(fab_add);
+            }
+        });
+    }
+
+    private void toggleFabMode(View v) {
+        rotate = ViewAnimation.rotateFab(v, !rotate);
+        if (rotate) {
+            ViewAnimation.showIn(lyt_calc);
+            ViewAnimation.showIn(lyt_save);
+            ViewAnimation.showIn(lyt_show_route);
+            back_drop.setVisibility(View.VISIBLE);
+        } else {
+            ViewAnimation.showOut(lyt_calc);
+            ViewAnimation.showOut(lyt_save);
+            ViewAnimation.showOut(lyt_show_route);
+            back_drop.setVisibility(View.GONE);
+        }
     }
 
     private void requestPermision() {
@@ -118,19 +230,17 @@ public class MapsRoute extends FragmentActivity implements OnMapReadyCallback,
                 mMap.animateCamera(cameraUpdate);
             }
         });
-
         //get destination location when user click on map
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-
                 end = latLng;
-
                 mMap.clear();
-
                 start = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
+                helper.setLongitude(end.longitude);
+                helper.setLatitude(end.latitude);
                 //start route finding
-                Findroutes(start, end);
+
             }
         });
 
@@ -225,5 +335,38 @@ public class MapsRoute extends FragmentActivity implements OnMapReadyCallback,
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Findroutes(start, end);
+    }
+
+
+    public void CalculationByDistance(LatLng StartP, LatLng EndP) {
+        int Radius = 6371;// radius of earth in Km
+        double lat1 = StartP.latitude;
+        double lat2 = EndP.latitude;
+        double lon1 = StartP.longitude;
+        double lon2 = EndP.longitude;
+        double dLat = Math.toRadians(lat2 - lat1);
+        double dLon = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+                + Math.cos(Math.toRadians(lat1))
+                * Math.cos(Math.toRadians(lat2)) * Math.sin(dLon / 2)
+                * Math.sin(dLon / 2);
+        double c = 2 * Math.asin(Math.sqrt(a));
+        double valueResult = Radius * c;
+        double km = valueResult / 1;
+        DecimalFormat newFormat = new DecimalFormat("####");
+        int kmInDec = Integer.parseInt(newFormat.format(km));
+        @SuppressLint("DefaultLocale") String strDouble = String.format("%.2f", km);
+        double meter = valueResult % 1000;
+        int meterInDec = Integer.parseInt(newFormat.format(meter));
+        Log.i("Radius Value", "" + valueResult + "   KM  " + kmInDec
+                + " Meter   " + meterInDec);
+        Context context;
+        final AlertDialog.Builder dialog1 = new AlertDialog.Builder(MapsRoute.this);
+        dialog1.setTitle("Distance and Time");
+        dialog1.setMessage("DISTANCE : " + strDouble + "(km)" + "\n" + "ESTIMATED TIME : ");
+        dialog1.setCancelable(true);
+        dialog1.show();
+        TastyToast.makeText(getApplicationContext(), "The distance is " + valueResult,
+                TastyToast.LENGTH_LONG, TastyToast.SUCCESS).show();
     }
 }

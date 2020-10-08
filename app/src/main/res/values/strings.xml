@@ -5,6 +5,7 @@
     <string name="facebook_app_id">701654833891571</string>
     <string name="fb_login_protocol_scheme">fb701654833891571</string>
     <string name="title_activity_maps">Map</string>
+    <string name="profile">Profile</string>
     <!--for facebook login-->
 
     <!--facebook login ends-->

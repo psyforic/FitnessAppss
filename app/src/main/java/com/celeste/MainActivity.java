@@ -4,7 +4,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.celeste.fitnessapp.R;
 import com.google.android.gms.common.api.Status;
@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     double lat1, lng1;
     double lat2, lng2;
     double miles, kilometres;
+    CardView btn_maps;
+    CardView bt_landmarks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +47,9 @@ public class MainActivity extends AppCompatActivity {
         setDistance();
     }
 
-    private void initComponent()
-    {
+    private void initComponent() {
+        btn_maps = findViewById(R.id.btn_maps);
+        bt_landmarks = findViewById(R.id.bt_landmarks);
         etSource = findViewById(R.id.etSource);
         etDestination = findViewById(R.id.etDestination);
         tvDistance = findViewById(R.id.tvDistance);
@@ -62,6 +65,18 @@ public class MainActivity extends AppCompatActivity {
                 //  if (!text_source.equals("") && text_destination.equals("")) {
 //                displayTrack(text_source, text_destination);
                 //   }
+            }
+        });
+        btn_maps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MapsRoute.class));
+            }
+        });
+        bt_landmarks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TastyToast.makeText(getApplicationContext(),"Coming soon...",TastyToast.LENGTH_LONG,TastyToast.DEFAULT).show();
             }
         });
     }
@@ -129,9 +144,9 @@ public class MainActivity extends AppCompatActivity {
         //Calculate longitude diff
         double longDifference = lng1 - lng2;
         double distance =
-                  Math.sin(degree2radius(lat1)) * Math.sin(degree2radius(lat2))
-                + Math.cos(degree2radius(lat1)) * Math.cos(degree2radius(lat2))
-                * Math.cos(degree2radius(longDifference));
+                Math.sin(degree2radius(lat1)) * Math.sin(degree2radius(lat2))
+                        + Math.cos(degree2radius(lat1)) * Math.cos(degree2radius(lat2))
+                        * Math.cos(degree2radius(longDifference));
         distance = Math.acos(distance);
         distance = radius2degree(distance);
         //miles

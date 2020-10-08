@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/headerText"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="20dp"
+            android:text="Account Info"
+            android:textAlignment="center" />
+
+        <RelativeLayout style="@style/profileDetailsLayout">
+
+            <ImageView
+                android:id="@+id/organization"
+
+                style="@style/profileDetailsImage"
+                android:padding="5dp"
+                android:src="@drawable/ic_home" />
+
+            <TextView
+                style="@style/profileDetailsTextMain"
+                android:layout_toRightOf="@id/organization"
+                android:text="Organization/Home" />
+
+            <TextView
+                android:id="@+id/tvTenant"
+                style="@style/profileDetailsMiniText"
+                android:layout_toRightOf="@id/organization"
+                android:text="developer" />
+
+        </RelativeLayout>
+
+        <View style="@style/proifleDetailsView" />
+
+        <RelativeLayout style="@style/profileDetailsLayout">
+
+            <ImageView
+                android:id="@+id/nameImageView"
+                style="@style/profileDetailsImage"
+                android:padding="5dp"
+                android:src="@drawable/ic_usernames" />
+
+            <TextView
+                android:id="@+id/nameTextView"
+                style="@style/profileDetailsTextMain"
+                android:layout_toRightOf="@id/nameImageView"
+                android:text="Fullname" />
+
+            <TextView
+                android:id="@+id/fullNames"
+                style="@style/profileDetailsMiniText"
+                android:layout_toRightOf="@id/nameImageView"
+                android:text="developer" />
+
+        </RelativeLayout>
+
+        <View style="@style/proifleDetailsView" />
+
+        <RelativeLayout style="@style/profileDetailsLayout">
+
+            <ImageView
+                android:id="@+id/mobileImageView"
+                style="@style/profileDetailsImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:src="@drawable/ic_phone" />
+
+            <TextView
+                style="@style/profileDetailsTextMain"
+                android:layout_toRightOf="@id/mobileImageView"
+                android:text="Mobile" />
+
+            <TextView
+                android:id="@+id/tvCellphone"
+                style="@style/profileDetailsMiniText"
+                android:layout_toRightOf="@id/mobileImageView"
+                android:text="+27 71 995 3590" />
+
+        </RelativeLayout>
+
+        <View style="@style/proifleDetailsView" />
+
+        <RelativeLayout style="@style/profileDetailsLayout">
+
+            <ImageView
+                android:id="@+id/emailImageView"
+                style="@style/profileDetailsImage"
+                android:padding="5dp"
+                android:src="@drawable/ic_email" />
+
+            <TextView
+                style="@style/profileDetailsTextMain"
+                android:layout_toRightOf="@id/emailImageView"
+                android:text="Email" />
+
+            <TextView
+                android:id="@+id/tvEmail"
+                style="@style/profileDetailsMiniText"
+                android:layout_toRightOf="@id/emailImageView"
+                android:text="celeste@dev.com" />
+
+        </RelativeLayout>
+
+        <View style="@style/proifleDetailsView" />
+
+        <RelativeLayout style="@style/profileDetailsLayout">
+
+            <ImageView
+                android:id="@+id/addressImageView"
+                style="@style/profileDetailsImage"
+                android:padding="5dp"
+                android:src="@drawable/ic_location" />
+
+            <TextView
+                style="@style/profileDetailsTextMain"
+                android:layout_toRightOf="@id/addressImageView"
+                android:text="Address" />
+
+            <TextView
+                android:id="@+id/tvAddress"
+                style="@style/profileDetailsMiniText"
+                android:layout_toRightOf="@id/addressImageView"
+                android:text="02 Oakworth Drive PE" />
+
+        </RelativeLayout>
+
+        <View style="@style/proifleDetailsView" />
+        <!--        <RelativeLayout style="@style/profileDetailsLayout">-->
+        <!--            <ImageView-->
+        <!--                android:id="@+id/dobImageView"-->
+        <!--                android:src="@drawable/ic_dob"-->
+        <!--                style="@style/profileDetailsImage" />-->
+
+        <!--            <TextView-->
+        <!--                android:text="D.O.B"-->
+        <!--                android:layout_toRightOf="@id/dobImageView"-->
+        <!--                style="@style/profileDetailsTextMain" />-->
+
+        <!--            <TextView-->
+        <!--                android:text="12-05-1990"-->
+        <!--                android:layout_toRightOf="@id/dobImageView"-->
+        <!--                style="@style/profileDetailsMiniText" />-->
+
+        <!--        </RelativeLayout>-->
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

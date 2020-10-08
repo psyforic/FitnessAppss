@@ -13,8 +13,18 @@
     <color name="themeColor">#F50057</color>
     <!--normal colors-->
     <color name="darkTextColor">#020000</color>
-
-
+    <color name="overlay_dark_10">#1A000000</color>
+    <color name="overlay_dark_20">#33000000</color>
+    <color name="overlay_dark_30">#4D000000</color>
+    <color name="overlay_dark_40">#66000000</color>
+    <color name="overlay_dark_50">#80000000</color>
+    <color name="overlay_dark_60">#99000000</color>
+    <color name="overlay_dark_70">#B3000000</color>
+    <color name="overlay_dark_80">#CC000000</color>
+    <color name="overlay_dark_90">#E6000000</color>
+    <color name="whiteCardColor">#fff</color>
+    <color name="loginBkColor">#f0f0f0</color>
+    <color name="df_transparent_black_background">#80000000</color>
     <!--colors for light mode-->
     <color name="contentTextColor">#020000</color>
     <color name="register_bk_color">#11CFC5</color>
@@ -23,6 +33,13 @@
     <color name="primaryTextColor">#11CFC5</color>
 
 
+    <!--colros for card-->
+
+    <color name="profilePrimaryDark">#00605b</color>
+    <color name="profileAccentColor">#F7F7F7</color>
+    <color name="profileBackground">#fff</color>
+    <color name="blackTextColor">#000</color>
+    <color name="profileEditTextColor">#707070</color>
     <!--colors for crop activity-->
     <!--<color name="ucrop_color_toolbar">@color/teal_500</color>-->
     <!--<color name="ucrop_color_statusbar">@color/teal_700</color>-->
