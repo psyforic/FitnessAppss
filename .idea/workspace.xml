@@ -16,35 +16,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b8ddd52-c9e0-48d3-bbc9-87214177cfad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/utils/InputValidation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/values-v21/styles.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/activities/ActivityFavoritePlaces.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/activities/ActivityFavoritePlaces.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/activities/ActivityHome.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/activities/ActivityHome.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/activities/ActivityRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/activities/ActivityRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_just_maps.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_maps.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_maps_route.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_nearby_land_marks.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/ic_launch-playstore.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/ic_launch_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launch_foreground.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launch.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launch_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launch.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launch_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launch.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launch_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launch.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launch_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launch.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launch_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launch.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launch_round.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -292,7 +279,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605114317454</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Landmarks are visible on the map,need to be selected can be saved to db">
+      <created>1605126113551</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1605126113551</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -336,18 +330,19 @@
     <state x="1035" y="222" key="AndroidCreateXmlResourceDialog/0.0.1440.900/1440.0.1440.900@0.0.1440.900" timestamp="1605007811007" />
     <state x="1996" y="257" key="AndroidCreateXmlResourceDialog/0.0.1440.900/1440.0.1440.900@1440.0.1440.900" timestamp="1605106785397" />
     <state x="556" y="257" key="AndroidCreateXmlResourceDialog/0.0.1440.900@0.0.1440.900" timestamp="1602105670481" />
-    <state x="1623" y="0" key="CommitChangelistDialog2" timestamp="1605114309727">
+    <state x="1623" y="0" key="CommitChangelistDialog2" timestamp="1605126102439">
       <screen x="1440" y="0" width="1440" height="900" />
     </state>
-    <state x="1623" y="0" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1440.900@1440.0.1440.900" timestamp="1605114309727" />
+    <state x="1623" y="0" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1440.900@1440.0.1440.900" timestamp="1605126102439" />
     <state x="183" y="0" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1602137802026" />
     <state width="452" height="618" key="DebuggerActiveHint" timestamp="1603051001363">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="452" height="618" key="DebuggerActiveHint/0.0.1440.900@0.0.1440.900" timestamp="1603051001363" />
-    <state x="1940" y="205" key="FileChooserDialogImpl" timestamp="1605006766709">
-      <screen x="1440" y="0" width="1440" height="900" />
+    <state x="500" y="205" key="FileChooserDialogImpl" timestamp="1605126936253">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="500" y="205" key="FileChooserDialogImpl/0.0.1440.900/1440.0.1440.900@0.0.1440.900" timestamp="1605126936253" />
     <state x="1940" y="205" key="FileChooserDialogImpl/0.0.1440.900/1440.0.1440.900@1440.0.1440.900" timestamp="1605006766709" />
     <state x="500" y="205" key="FileChooserDialogImpl/0.0.1440.900@0.0.1440.900" timestamp="1602107640549" />
     <state x="588" y="344" key="Github.ShareDialog" timestamp="1601914543150">
@@ -402,10 +397,10 @@
     </state>
     <state width="1005" height="2" key="GridCell.Tab.1.right/0.0.1440.900/1440.0.1440.900@1440.0.1440.900" timestamp="1605111198738" />
     <state width="1397" height="111" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1603049669627" />
-    <state x="1752" y="179" key="Vcs.Push.Dialog.v2" timestamp="1605114320930">
+    <state x="1752" y="179" key="Vcs.Push.Dialog.v2" timestamp="1605126117719">
       <screen x="1440" y="0" width="1440" height="900" />
     </state>
-    <state x="1752" y="179" key="Vcs.Push.Dialog.v2/0.0.1440.900/1440.0.1440.900@1440.0.1440.900" timestamp="1605114320930" />
+    <state x="1752" y="179" key="Vcs.Push.Dialog.v2/0.0.1440.900/1440.0.1440.900@1440.0.1440.900" timestamp="1605126117719" />
     <state x="312" y="179" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1602137893821" />
     <state x="1976" y="228" key="chooseDestDirectoryDialog" timestamp="1605085717766">
       <screen x="1440" y="0" width="1440" height="900" />
