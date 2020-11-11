@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FitnessApp</string>
+    <string name="app_name">Your Way</string>
     <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Password</string>
     <string name="facebook_app_id">701654833891571</string>
@@ -19,6 +19,9 @@
     <string name="forgot_password_msg">We just need your registered email address to send you password reset instructions.</string>
     <string name="forgot_password"> Forgot Password?</string>
     <string name="todo">TODO</string>
+    <string name="favorite_places">Favorite Places</string>
+    <string name="share_location">Share My Location</string>
+    <string name="refresh">Refresh</string>
 
     <!--for facebook login-->
 

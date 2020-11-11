@@ -55,78 +55,24 @@ public class LandmarksAdapter extends RecyclerView.Adapter<LandmarksAdapter.View
         Geocoder geocoder;
         geocoder = new Geocoder(context, Locale.getDefault());
         try {
-            addresses = geocoder.getFromLocation(landmark.getLatitude(), landmark.getLongitude(), 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-            String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-            String city = addresses.get(0).getLocality();
-            String state = addresses.get(0).getAdminArea();
-            String country = addresses.get(0).getCountryName();
-            String postalCode = addresses.get(0).getPostalCode();
-            String knownName = addresses.get(0).getSubLocality();
-            String[] parts = address.split(",");
-            String name = parts[0];
-            holder.tv_knownName.setText(name);
-            holder.tv_address.setText(address);
+            if(landmark!=null)
+            {
+                addresses = geocoder.getFromLocation(landmark.getLatitude(), landmark.getLongitude(), 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+                String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+                String city = addresses.get(0).getLocality();
+                String state = addresses.get(0).getAdminArea();
+                String country = addresses.get(0).getCountryName();
+                String postalCode = addresses.get(0).getPostalCode();
+                String knownName = addresses.get(0).getSubLocality();
+                String[] parts = address.split(",");
+                String name = parts[0];
+                holder.tv_knownName.setText(landmark.getName());
+                holder.tv_address.setText(address);
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        holder.preview.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
-//        holder.navigate.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                TastyToast.makeText(context, "" + landmark.getLatitude(), TastyToast.LENGTH_SHORT, TastyToast.SUCCESS).show();
-//                Intent intent = new Intent(context, MapsRoute.class);
-//                intent.putExtra("latitude", landmark.getLatitude());
-//                intent.putExtra("longitude", landmark.getLongitude());
-//                context.startActivity(intent);
-//            }
-//        });
-//        holder.delete.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(v.getRootView().getContext(), R.style.MyAlertDialogStyle);
-//                builder.setMessage("Delete this place?");
-//                builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int arg1) {
-//
-//                        firebaseFirestore.collection("Landmarks")
-//                                .document()
-//                                .delete()
-//                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                    @Override
-//                                    public void onSuccess(Void aVoid) {
-//                                        TastyToast.makeText(context, "Successfully Deleted", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS).show();
-//                                        addresses.remove(position);
-//                                        landmarks.remove(position);
-//                                        notifyItemRemoved(position);
-//                                        addresses.notify();
-//                                        notifyItemRangeChanged(position, getItemCount());
-//                                        notifyDataSetChanged();
-//                                    }
-//                                }).addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                TastyToast.makeText(context, "Failed", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS).show();
-//                            }
-//                        });
-//                    }
-//                });
-//                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int arg1) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//
-//                AlertDialog alert = builder.create();
-//                alert.show();
-//            }
-//        });
     }
 
     public void setOnItemClickListener(final OnItemClickListener onItemClickListener) {
@@ -138,11 +84,19 @@ public class LandmarksAdapter extends RecyclerView.Adapter<LandmarksAdapter.View
         return landmarks.size();
     }
 
+    @Override
+    public long getItemId(int position) {
+        return super.getItemId(position);
+    }
+
     public interface OnItemClickListener {
 
         void onItemClick(View view, Address obj, int pos);
     }
-
+    @Override
+    public void setHasStableIds(boolean hasStableIds) {
+        super.setHasStableIds(hasStableIds);
+    }
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tv_address;
         public TextView tv_knownName;

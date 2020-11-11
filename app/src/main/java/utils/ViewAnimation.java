@@ -213,7 +213,7 @@ public class ViewAnimation {
                         super.onAnimationEnd(animation);
                     }
                 })
-                .rotation(rotate ? 135f : 0f);
+                .rotation(rotate ? 1f : 0f);
         return rotate;
     }
 

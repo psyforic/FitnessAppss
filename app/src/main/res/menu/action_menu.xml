@@ -1,8 +1,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/actions"
-        android:icon="@drawable/ic_more"
-        app:showAsAction="ifRoom">
-    </item>
+        android:id="@+id/action_profile"
+        android:orderInCategory="100"
+        android:title="Profile"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_favs"
+        android:orderInCategory="100"
+        android:title="Favorite Places"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_share"
+        android:orderInCategory="100"
+        android:title="Share Location"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_logout"
+        android:icon="@drawable/ic_baseline_map_24"
+        android:orderInCategory="100"
+        android:title="Logout"
+        app:showAsAction="never" />
+
 </menu>

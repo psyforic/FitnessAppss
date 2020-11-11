@@ -27,14 +27,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.celeste.ActivityForgotPassword"
+            android:name="activities.ActivityHome"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.celeste.ActivityFavoritePlaces"
+            android:name="activities.ActivityForgotPassword"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.celeste.ProfileActivity"
-            android:theme="@style/AppTheme.NoActionBar" /> <!-- <activity android:name="com.celeste.NearbyLandMarksActivity"/> -->
+            android:name="activities.ActivityFavoritePlaces"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <!-- <activity android:name="com.celeste.NearbyLandMarksActivity"/> -->
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -46,21 +47,17 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCWSGKaqi-ksbt79RmDc7RCZ0HES7EWyqg" />
-
         <activity
             android:name="com.celeste.MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity
-            android:name="com.celeste.ActivityRegister"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="com.celeste.MainActivity"
+            android:name="activities.ActivityRegister"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.celeste.MapsRoute"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.celeste.ActivityLogin"
+            android:name="activities.ActivityLogin"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

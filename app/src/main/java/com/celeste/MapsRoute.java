@@ -4,12 +4,15 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -17,6 +20,7 @@ import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -42,10 +46,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
@@ -72,6 +77,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+import activities.ActivityFavoritePlaces;
+import fragments.FragmentBottomSheetDialogFull;
 import utils.ViewAnimation;
 
 public class MapsRoute extends FragmentActivity implements OnMapReadyCallback,
@@ -79,40 +86,6 @@ public class MapsRoute extends FragmentActivity implements OnMapReadyCallback,
 
     //to get location permissions.
     private final static int LOCATION_REQUEST_CODE = 23;
-    private static final String KEY_TITLE = "title";
-    private static final String KEY_DESCRIPTION = "description";
-    protected LatLng start = null;
-    protected LatLng end = null;
-    MarkerOptions options = null;
-    GoogleMap map;
-    Button btnDir;
-    MarkerOptions markerOptions1, markerOptions2;
-    //current and destination location objects
-    Location myLocation = null;
-    Location destinationLocation = null;
-    boolean locationPermission = false;
-    FloatingActionButton fab_add, fab_save, fab_calculate, fab_show_route;
-    FirebaseFirestore db;
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("landmark");
-    LocationHelper helper;
-    String TAG = "";
-    Landmarks landmarks = new Landmarks();
-    Spinner spinner;
-    Button btnFind;
-    //google map object
-    private GoogleMap mMap;
-    //polyline object
-    private List<Polyline> polylines = null;
-    private View parent_view;
-    private View back_drop;
-    private boolean rotate = false;
-    private View lyt_save;
-    private View lyt_calc;
-    private View lyt_show_route;
-    private final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-    private final CollectionReference landmarksRef = firebaseFirestore.collection("Landmarks");
-    private DocumentReference lanmarkRef = firebaseFirestore.document("Landmarks/favorite_places");
     final String[] placesType = {"stadium", "school",
             "shopping_mall",
             "museum",
@@ -128,6 +101,29 @@ public class MapsRoute extends FragmentActivity implements OnMapReadyCallback,
             "church",
             "city_hall",
             "restaurant"};
+    private final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+    private final CollectionReference landmarksRef = firebaseFirestore.collection("Landmarks");
+    protected LatLng start = null;
+    protected LatLng end = null;
+    MarkerOptions options = null;
+    GoogleMap map;
+    Button btnDir;
+    Location myLocation = null;
+    boolean locationPermission = false;
+    FloatingActionButton fab_add, fab_save, fab_calculate, fab_show_route;
+    FirebaseFirestore db;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("Landmarks");
+    LocationHelper helper;
+    String TAG = "";
+    Landmarks landmarks = new Landmarks();
+    Spinner spinner;
+    Button btnFind;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String userId = user.getUid();
+    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    DocumentReference userDocument =
+            firebaseFirestore.collection("users").document(firebaseUser.getUid()).collection("Landmarks").document();
     String[] names = {"Stadium", "School",
             "Shopping Mall",
             "Museum",
@@ -136,6 +132,44 @@ public class MapsRoute extends FragmentActivity implements OnMapReadyCallback,
             "Bus Station",
             "Atm",
             "Mosque", "Park", "Hospital", "Gas Station", "Cemetery", "Church", "City Hall", "Restaurant"};
+    private GoogleMap mMap;
+    private List<Polyline> polylines = null;
+    private View parent_view;
+    private View back_drop;
+    private boolean rotate = false;
+    private View lyt_save;
+    private View lyt_calc;
+    private View lyt_show_route;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.action_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_profile:
+                FragmentBottomSheetDialogFull fragment = new FragmentBottomSheetDialogFull();
+                fragment.show(getSupportFragmentManager(), fragment.getTag());
+                break;
+            case R.id.action_favs:
+                startActivity(new Intent(this, ActivityFavoritePlaces.class));
+                break;
+            case R.id.action_share:
+                startActivity(new Intent(this, ActivityFavoritePlaces.class));
+                break;
+            case R.id.action_logout:
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                auth.signOut();
+                finish();
+                break;
+            default:
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onStart() {
@@ -147,23 +181,18 @@ public class MapsRoute extends FragmentActivity implements OnMapReadyCallback,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps_route);
         db = FirebaseFirestore.getInstance();
-        double latitude = getIntent().getDoubleExtra("latitude", 0);
-        double longitude = getIntent().getDoubleExtra("longitude", 0);
-        TastyToast.makeText(getApplicationContext(), "" + longitude, TastyToast.LENGTH_LONG, TastyToast.SUCCESS).show();
-
-        if (latitude != 0 && longitude != 0) {
-            LatLng latLng = new LatLng(latitude, longitude);
-            findRoutes(start, latLng);
-        }
         initComponents();
-        //request location permission.
+        initToolbar();
         requestPermision();
-
-        //init google map fragment to show map.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         onClickListeners();
+    }
+
+    private void initToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Maps");
     }
 
     private void initComponents() {
@@ -187,66 +216,51 @@ public class MapsRoute extends FragmentActivity implements OnMapReadyCallback,
     }
 
     private void saveLandmarks() {
+        userDocument.set(landmarks).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                TastyToast.makeText(getApplicationContext(), "Saved", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS).show();
+            }
+        });
         landmarksRef.addSnapshotListener(this, new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException error) {
                 if (error != null) {
                     return;
                 }
-                String data = "";
+                StringBuilder data = new StringBuilder();
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                     Landmarks landmark = documentSnapshot.toObject(Landmarks.class);
                     landmark.setDocumentId(documentSnapshot.getId());
                     String documentId = landmarks.getDocumentId();
                     String latitude = String.valueOf(landmarks.getLatitude());
                     String longitude = String.valueOf(landmark.getLongitude());
-                    data += "ID: " + documentId
-                            + "\nLatitude: " + latitude + "\nLongitude: " + longitude + "\n\n";
+                    data.append("ID: ").append(userId).append("\nLatitude: ").append(latitude).append("\nLongitude: ").append(longitude).append("\n\n");
                 }
             }
         });
     }
 
     private void onClickListeners() {
-        fab_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleFabMode(v);
+        fab_add.setOnClickListener(v -> toggleFabMode(v));
+        fab_calculate.setOnClickListener(v -> {
+            if (end != null) {
+                CalculationByDistance(start, end);
+            } else {
+                TastyToast.makeText(getApplicationContext(), "Please select your destination to calculate distance and time", TastyToast.LENGTH_LONG, TastyToast.CONFUSING).show();
             }
-        });
-        fab_calculate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (end != null) {
-                    CalculationByDistance(start, end);
-                } else {
-                    TastyToast.makeText(getApplicationContext(), "Please select your destination to calculate distance and time", TastyToast.LENGTH_LONG, TastyToast.CONFUSING).show();
-                }
 
-            }
         });
-        fab_show_route.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                findRoutes(start, end);
-                toggleFabMode(fab_add);
-            }
+        fab_show_route.setOnClickListener(v -> {
+            findRoutes(start, end);
+            toggleFabMode(fab_add);
         });
         fab_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toggleFabMode(fab_add);
+                CalculationByDistance(start, end);
                 saveLandmarks();
-                myRef.setValue(helper).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            TastyToast.makeText(getApplicationContext(), "Your landmark has been saved", TastyToast.LENGTH_LONG, TastyToast.SUCCESS).show();
-                        } else {
-                            TastyToast.makeText(getApplicationContext(), "Your landmark has not been saved", TastyToast.LENGTH_LONG, TastyToast.ERROR).show();
-                        }
-                    }
-                });
             }
         });
         back_drop.setOnClickListener(new View.OnClickListener() {
@@ -341,8 +355,6 @@ public class MapsRoute extends FragmentActivity implements OnMapReadyCallback,
         }
     }
 
-    //to get user location
-
     private void getMyLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -387,22 +399,21 @@ public class MapsRoute extends FragmentActivity implements OnMapReadyCallback,
         googleMap.getUiSettings().setRotateGesturesEnabled(true);
         mMap = googleMap;
         getMyLocation();
-//        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-//            @Override
-//            public boolean onMarkerClick(Marker marker) {
-//                helper.setLongitude(marker.getPosition().longitude);
-//                helper.setLatitude(marker.getPosition().latitude);
-//                landmarks = new Landmarks(marker.getPosition().latitude, marker.getPosition().longitude, "");
-////                landmarksRef.add(landmarks);
-//                marker.setIcon(getMarkerIcon(getResources().getColor(R.color.black)));
-//                if (marker.isInfoWindowShown()) {
-//                    marker.hideInfoWindow();
-//                } else {
-//                    marker.showInfoWindow();
-//                }
-//                return true;
-//            }
-//        });
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                helper.setLongitude(marker.getPosition().longitude);
+                helper.setLatitude(marker.getPosition().latitude);
+                landmarks = new Landmarks(marker.getPosition().latitude, marker.getPosition().longitude, marker.getTitle());
+                marker.setIcon(getMarkerIcon(getResources().getColor(R.color.black)));
+                if (marker.isInfoWindowShown()) {
+                    marker.hideInfoWindow();
+                } else {
+                    marker.showInfoWindow();
+                }
+                return true;
+            }
+        });
     }
 
     // function to find Routes.
@@ -485,7 +496,6 @@ public class MapsRoute extends FragmentActivity implements OnMapReadyCallback,
         return BitmapDescriptorFactory.defaultMarker(hsv[0]);
     }
 
-
     @Override
     public void onRoutingCancelled() {
         findRoutes(start, end);
@@ -528,7 +538,7 @@ public class MapsRoute extends FragmentActivity implements OnMapReadyCallback,
     }
 
     @SuppressLint("StaticFieldLeak")
-    private class PlaceTask extends AsyncTask<String, Integer, String> {
+    public class PlaceTask extends AsyncTask<String, Integer, String> {
 
 
         @Override
@@ -587,10 +597,6 @@ public class MapsRoute extends FragmentActivity implements OnMapReadyCallback,
                 mMap.addMarker(options);
                 start = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
                 end = new LatLng(options.getPosition().latitude, options.getPosition().longitude);
-                helper.setLongitude(options.getPosition().longitude);
-                helper.setLatitude(options.getPosition().latitude);
-                landmarks = new Landmarks(options.getPosition().latitude, options.getPosition().longitude, name);
-                landmarksRef.add(landmarks);
             }
         }
     }

@@ -5,27 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.celeste.MapsRoute"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    tools:context="com.celeste.MapsRoute">
+
+
 
     <LinearLayout
-        android:elevation="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:elevation="10dp"
+        android:orientation="vertical"
         android:padding="8dp">
-
+        <include layout="@layout/toolbar" android:visibility="gone" />
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_background" />
+            tools:listitem="@android:layout/activity_list_item"
+            android:popupBackground="@android:color/background_light"
+            android:background="@android:drawable/spinner_dropdown_background"/>
 
         <Button
             android:id="@+id/btn_find"
             style="@style/MessengerButtonText.Blue"
-            android:layout_width="144dp"
+            android:layout_width="wrap_content"
+            android:padding="5dp"
+            android:layout_gravity="end"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
             android:text="Find Landmark" />
@@ -35,7 +39,7 @@
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
     <View
         android:id="@+id/back_drop"
@@ -44,17 +48,15 @@
         android:background="@color/overlay_dark_30"
         android:clickable="true"
         android:fitsSystemWindows="true"
+        android:focusable="true"
         app:layout_anchor="@+id/map"
-        app:layout_anchorGravity="center"
-        android:focusable="true" />
+        app:layout_anchorGravity="center" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
-        android:layout_gravity="bottom|end"
+        android:layout_gravity="end|bottom"
         android:gravity="end"
         android:orientation="vertical">
 
@@ -80,9 +82,9 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textColor="@color/whiteTextColor"
                     android:text="@string/save_landmark"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textColor="@color/whiteTextColor" />
 
             </androidx.cardview.widget.CardView>
 
@@ -95,13 +97,13 @@
                 android:layout_marginRight="@dimen/spacing_smlarge"
                 android:layout_marginBottom="@dimen/spacing_middle"
                 android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
                 android:src="@drawable/ic_save_landmark"
                 android:tint="@android:color/white"
                 app:backgroundTint="@color/com_facebook_messenger_blue"
                 app:fabSize="mini"
-                app:rippleColor="@android:color/black"
-                android:focusable="true"
-                android:contentDescription="@string/app_name" />
+                app:rippleColor="@android:color/black" />
 
             <View
                 android:layout_width="@dimen/spacing_xmedium"
@@ -131,9 +133,9 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textColor="@color/whiteTextColor"
                     android:text="@string/caluclate_distance"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textColor="@color/whiteTextColor" />
 
             </androidx.cardview.widget.CardView>
 
@@ -146,13 +148,13 @@
                 android:layout_marginRight="@dimen/spacing_smlarge"
                 android:layout_marginBottom="@dimen/spacing_middle"
                 android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
                 android:src="@drawable/ic_calculate"
                 android:tint="@android:color/white"
                 app:backgroundTint="@color/com_facebook_messenger_blue"
                 app:fabSize="mini"
-                app:rippleColor="@android:color/black"
-                android:focusable="true"
-                android:contentDescription="@string/app_name" />
+                app:rippleColor="@android:color/black" />
 
             <View
                 android:layout_width="@dimen/spacing_xmedium"
@@ -183,8 +185,8 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="@string/show_route"
-                    android:textColor="@color/whiteTextColor"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textColor="@color/whiteTextColor" />
 
             </androidx.cardview.widget.CardView>
 
@@ -197,13 +199,13 @@
                 android:layout_marginRight="@dimen/spacing_smlarge"
                 android:layout_marginBottom="@dimen/spacing_middle"
                 android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
                 android:src="@drawable/ic_directions"
                 android:tint="@android:color/white"
                 app:backgroundTint="@color/com_facebook_messenger_blue"
                 app:fabSize="mini"
-                app:rippleColor="@android:color/black"
-                android:focusable="true"
-                android:contentDescription="@string/app_name" />
+                app:rippleColor="@android:color/black" />
 
             <View
                 android:layout_width="@dimen/spacing_xmedium"
@@ -220,13 +222,14 @@
             android:layout_marginRight="@dimen/spacing_smlarge"
             android:layout_marginBottom="@dimen/spacing_middle"
             android:clickable="true"
+            android:layout_gravity="center"
+            android:contentDescription="@string/app_name"
+            android:focusable="true"
             android:src="@drawable/ic_read_more"
             android:tint="@android:color/white"
             app:backgroundTint="@color/colorPrimary"
             app:fabSize="normal"
-            app:rippleColor="@android:color/white"
-            android:contentDescription="@string/app_name"
-            android:focusable="true" />
+            app:rippleColor="@android:color/white" />
 
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

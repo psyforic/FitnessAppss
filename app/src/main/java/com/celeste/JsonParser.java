@@ -44,7 +44,7 @@ public class JsonParser {
         return dataList;
     }
 
-    protected List<HashMap<String, String>> parseResult(JSONObject object)
+    public List<HashMap<String, String>> parseResult(JSONObject object)
     {
         //Initialize json array
         JSONArray jsonArray = null;

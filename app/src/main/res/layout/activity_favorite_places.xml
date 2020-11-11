@@ -8,7 +8,7 @@
     android:background="@color/grey_3"
     android:fitsSystemWindows="true"
     app:popupTheme="@style/AppTheme.PopupOverlay"
-    tools:context="com.celeste.ActivityFavoritePlaces">
+    tools:context="activities.ActivityFavoritePlaces">
 
     <include
         layout="@layout/toolbar" />
