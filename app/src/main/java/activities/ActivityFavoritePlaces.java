@@ -79,7 +79,7 @@ public class ActivityFavoritePlaces extends AppCompatActivity {
                 } else {
                     lyt_not_found.setVisibility(View.VISIBLE);
                     recyclerView.setVisibility(View.GONE);
-                    TastyToast.makeText(getApplicationContext(), "You have not saved any Landmarks", TastyToast.LENGTH_LONG, TastyToast.INFO).show();
+                    TastyToast.makeText(getApplicationContext(), "You have not saved any places", TastyToast.LENGTH_LONG, TastyToast.INFO).show();
                     pullToRefresh.setRefreshing(false);
                     swipeRefreshListener();
                 }

@@ -3,7 +3,7 @@ package activities;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -58,7 +59,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.GeoPoint;
 import com.sdsmdg.tastytoast.TastyToast;
 
 import org.json.JSONException;
@@ -71,6 +71,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -84,7 +85,7 @@ public class ActivityHome extends FragmentActivity implements OnMapReadyCallback
 
     //to get location permissions.
     private final static int LOCATION_REQUEST_CODE = 23;
-    final String[] placesType = {"historic", "natural",
+    final String[] placesType = {"school",
             "shopping_mall",
             "museum",
             "railway_construction",
@@ -92,6 +93,7 @@ public class ActivityHome extends FragmentActivity implements OnMapReadyCallback
             "bus_station",
             "atm",
             "mosque",
+            "bridge",
             "park",
             "hospital",
             "gas_station",
@@ -127,14 +129,14 @@ public class ActivityHome extends FragmentActivity implements OnMapReadyCallback
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     DocumentReference userDocument =
             firebaseFirestore.collection("users").document(firebaseUser.getUid()).collection("Landmarks").document();
-    String[] names = {"Historic", "Natural",
+    String[] names = {"School",
             "Shopping Mall",
             "Museum",
             "Railway Construction",
             "Movie Theatre",
             "Bus Station",
             "Atm",
-            "Mosque", "Park", "Hospital", "Gas Station", "Cemetery", "Church", "City Hall", "Restaurant"};
+            "Mosque","Bridge" ,"Park", "Hospital", "Gas Station", "Cemetery", "Church", "City Hall", "Restaurant"};
     private GoogleMap mMap;
     private List<Polyline> polylines = null;
     private View parent_view;
@@ -153,6 +155,7 @@ public class ActivityHome extends FragmentActivity implements OnMapReadyCallback
     private ImageButton list_button;
     private boolean state1;
     private boolean state2;
+    private ProgressBar progress_bar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,7 +189,7 @@ public class ActivityHome extends FragmentActivity implements OnMapReadyCallback
         fab_add = findViewById(R.id.fab_add);
         fab_calculate = findViewById(R.id.fab_calculate);
         fab_show_route = findViewById(R.id.fab_show_route);
-
+        progress_bar = findViewById(R.id.progress_bar);
         list_button = findViewById(R.id.list_button);
 
         fab_logout = findViewById(R.id.fab_logout);
@@ -254,6 +257,7 @@ public class ActivityHome extends FragmentActivity implements OnMapReadyCallback
 
         });
         fab_show_route.setOnClickListener(v -> {
+            progress_bar.setVisibility(View.VISIBLE);
             findRoutes(start, end);
             toggleFabMode(fab_add);
         });
@@ -287,19 +291,19 @@ public class ActivityHome extends FragmentActivity implements OnMapReadyCallback
         fab_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               PackageManager packageManager = getApplicationContext().getPackageManager();
-               Intent i = new Intent(Intent.ACTION_VIEW);
-               try {
-                   Location geoPoint = new Location(myLocation.getLatitude() / 1E6 + "," + myLocation.getLongitude() / 1E6);
-                   String url = "https://api.whatsapp.com/send?= " + "&text=" + URLEncoder.encode(String.valueOf(geoPoint));
-                   i.setPackage("com.whatsapp");
-                   i.setData(Uri.parse(url));
-                   if (i.resolveActivity(packageManager) != null) {
-                       getApplicationContext().startActivity(i);
-                   }
-               } catch (Exception e) {
-                   e.printStackTrace();
-               }
+                PackageManager packageManager = getApplicationContext().getPackageManager();
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                try {
+                    Location geoPoint = new Location(myLocation.getLatitude() / 1E6 + "," + myLocation.getLongitude() / 1E6);
+                    String url = "https://api.whatsapp.com/send?= " + "&text=" + URLEncoder.encode(String.valueOf(geoPoint));
+                    i.setPackage("com.whatsapp");
+                    i.setData(Uri.parse(url));
+                    if (i.resolveActivity(packageManager) != null) {
+                        getApplicationContext().startActivity(i);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
             }
         });
@@ -327,7 +331,6 @@ public class ActivityHome extends FragmentActivity implements OnMapReadyCallback
             }
         });
     }
-
 
     private String downloadUrl(String string) throws IOException {
         //init url
@@ -479,6 +482,7 @@ public class ActivityHome extends FragmentActivity implements OnMapReadyCallback
     public void findRoutes(LatLng Start, LatLng End) {
         if (Start == null || End == null) {
             TastyToast.makeText(ActivityHome.this, "Unable to get location", TastyToast.LENGTH_LONG, TastyToast.ERROR).show();
+            progress_bar.setVisibility(View.GONE);
         } else {
             mMap.clear();
             Routing routing = new Routing.Builder()
@@ -489,6 +493,7 @@ public class ActivityHome extends FragmentActivity implements OnMapReadyCallback
                     .key("AIzaSyCWSGKaqi-ksbt79RmDc7RCZ0HES7EWyqg")  //also define your api key here.
                     .build();
             routing.execute();
+            progress_bar.setVisibility(View.GONE);
         }
     }
 
@@ -498,7 +503,6 @@ public class ActivityHome extends FragmentActivity implements OnMapReadyCallback
         Snackbar snackbar = Snackbar.make(parentLayout, e.toString(), Snackbar.LENGTH_LONG);
         snackbar.show();
         Log.d("TAG", "onRoutingFailure: " + e.toString());
-//        Findroutes(start,end);
     }
 
     @Override
@@ -558,11 +562,13 @@ public class ActivityHome extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onRoutingCancelled() {
         findRoutes(start, end);
+        progress_bar.setVisibility(View.GONE);
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         findRoutes(start, end);
+        progress_bar.setVisibility(View.GONE);
     }
 
 
@@ -583,15 +589,34 @@ public class ActivityHome extends FragmentActivity implements OnMapReadyCallback
         double km = valueResult / 1;
         DecimalFormat newFormat = new DecimalFormat("####");
         int kmInDec = Integer.parseInt(newFormat.format(km));
-        @SuppressLint("DefaultLocale") String strDouble = String.format("%.2f", km);
+        @SuppressLint("DefaultLocale")
         double meter = valueResult % 1000;
         int meterInDec = Integer.parseInt(newFormat.format(meter));
-        Log.i("Radius Value", "" + valueResult + "   KM  " + kmInDec
-                + " Meter   " + meterInDec);
-        Context context;
+
+        double miles = kmInDec / 1.621371;
+        String newMiles = String.format("%.2f", miles);
+        Location locationA = new Location("A");
+        locationA.setLatitude(StartP.latitude);
+        locationA.setLongitude(StartP.longitude);
+
+        Location locationB = new Location("B");
+        locationB.setLatitude(EndP.latitude);
+        locationB.setLongitude(EndP.longitude);
+
+        float dist = locationA.distanceTo(locationB) / 1000;
+        @SuppressLint("DefaultLocale") String strDouble = String.format("%.2f", dist);
+        int speedIs1KmMinute = 100;
+        double estimatedDriveTimeInMinutes = dist / speedIs1KmMinute;
+        DateFormat.getTimeInstance(DateFormat.MEDIUM).format(estimatedDriveTimeInMinutes);
         final AlertDialog.Builder dialog1 = new AlertDialog.Builder(ActivityHome.this);
-        dialog1.setTitle("Distance and Time");
-        dialog1.setMessage("DISTANCE : " + strDouble + "(km)" + "\n" + "ESTIMATED TIME : ");
+        dialog1.setTitle("Distance");
+        dialog1.setMessage("KILOMETERS : " + strDouble + "(km)" + "\n"+ "\n" +"MILES : "+ newMiles + "(mi)");
+        dialog1.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
         dialog1.setCancelable(true);
         dialog1.show();
     }
@@ -648,6 +673,7 @@ public class ActivityHome extends FragmentActivity implements OnMapReadyCallback
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            progress_bar.setVisibility(View.GONE);
             return mapList;
         }
 
@@ -674,6 +700,7 @@ public class ActivityHome extends FragmentActivity implements OnMapReadyCallback
                 start = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
                 end = new LatLng(options.getPosition().latitude, options.getPosition().longitude);
             }
+            progress_bar.setVisibility(View.GONE);
         }
     }
 }

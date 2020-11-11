@@ -22,7 +22,9 @@
     <string name="favorite_places">Favorite Places</string>
     <string name="share_location">Share My Location</string>
     <string name="refresh">Refresh</string>
+    <string name="error_password_match">Password Does Not Matches</string>
 
+    <string name="str_confirm_password">Confirm Password</string>
     <!--for facebook login-->
 
     <!--facebook login ends-->

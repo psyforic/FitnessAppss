@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.celeste.fitnessapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,17 +28,19 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.sdsmdg.tastytoast.TastyToast;
 
 import models.UserInfo;
+import utils.InputValidation;
 
 public class ActivityRegister extends AppCompatActivity {
-
+    private final AppCompatActivity activity = ActivityRegister.this;
     ProgressBar loadingProgressBar;
-    EditText etName, etEmail, etMobNumber, etPassword;
+    TextInputEditText etName, etEmail, etMobNumber;
+    TextInputEditText etPassword,etConfirmPassword;
     Button btnSignUp;
-    TextInputLayout inputLayoutEmail, inputLayoutPassword;
+    TextInputLayout inputLayoutEmail, inputLayoutPassword,inputLayoutConfirmPassword;
     TextView login;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-
+    private InputValidation inputValidation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,12 +53,14 @@ public class ActivityRegister extends AppCompatActivity {
     private void initComponent() {
         etEmail = findViewById(R.id.editTextEmail);
         etPassword = findViewById(R.id.editTextPassword);
-        etMobNumber = findViewById(R.id.editTextMobile);
+        etConfirmPassword = findViewById(R.id.edit_confirm_password);
         etName = findViewById(R.id.editTextName);
         btnSignUp = findViewById(R.id.btnRegister);
         inputLayoutEmail = findViewById(R.id.textInputEmail);
         inputLayoutPassword = findViewById(R.id.textInputPassword);
+        inputLayoutConfirmPassword = findViewById(R.id.textInputLayoutConfirmPassword);
         loadingProgressBar = findViewById(R.id.loadingProgressBar);
+        inputValidation = new InputValidation(activity);
         login = findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +78,6 @@ public class ActivityRegister extends AppCompatActivity {
 
 
     private void registerUser() {
-        loadingProgressBar.setVisibility(View.VISIBLE);
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
         if (email.isEmpty()) {
@@ -94,14 +98,32 @@ public class ActivityRegister extends AppCompatActivity {
             inputLayoutPassword.requestFocus();
             return;
         }
+//        if(!etPassword.getText().equals(etConfirmPassword.getText()))
+//        {
+//            inputLayoutPassword.setError("Password Does Not Matches");
+//            inputLayoutConfirmPassword.setError("Password Does Not Matches");
+//            inputLayoutConfirmPassword.requestFocus();
+//            inputLayoutPassword.requestFocus();
+//            return;
+//        }
+//        else
+//        {
+//
+//        }
+        if (!inputValidation.isInputEditTextMatches(etPassword, etConfirmPassword,
+                inputLayoutConfirmPassword, getString(R.string.error_password_match)))
+        {
+            inputLayoutConfirmPassword.requestFocus();
+            return;
+        }
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        loadingProgressBar.setVisibility(View.VISIBLE);
                         if (task.isSuccessful()) {
                             UserInfo userInfo = new UserInfo();
                             userInfo.setEmailAddress(email);
-                            userInfo.setMobileNumber(etMobNumber.getText().toString());
                             userInfo.setName(etName.getText().toString());
                             FirebaseUser user = mAuth.getCurrentUser();
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()

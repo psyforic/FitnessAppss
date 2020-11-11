@@ -16,28 +16,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b8ddd52-c9e0-48d3-bbc9-87214177cfad" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/utils/InputValidation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/values-v21/styles.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/activities/ActivityFavoritePlaces.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/activities/ActivityFavoritePlaces.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/activities/ActivityHome.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/activities/ActivityHome.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/adapters/LandmarksAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/adapters/LandmarksAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/celeste/MapsActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/celeste/MapsRoute.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/celeste/NearbyLandMarksActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/activities/ActivityRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/activities/ActivityRegister.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_just_maps.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_maps.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_maps_route.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_nearby_land_marks.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[Pixel_3a_XL_API_29]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[42008846f28185b3]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -64,6 +78,7 @@
         <option value="layoutResourceFile" />
         <option value="Class" />
         <option value="resourceFile" />
+        <option value="valueResourceFile" />
       </list>
     </option>
   </component>
@@ -270,7 +285,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605107605458</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Landmarks are visible on the map,need to be selected can be saved to db">
+      <created>1605114317454</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1605114317454</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -284,11 +306,11 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="237" y="182" key="#PSD/0.0.1440.900@0.0.1440.900" timestamp="1601839210328" />
-    <state x="2146" y="140" key="#com.intellij.ide.util.MemberChooser" timestamp="1605101881179">
+    <state x="2146" y="140" key="#com.intellij.ide.util.MemberChooser" timestamp="1605120134140">
       <screen x="1440" y="0" width="1440" height="900" />
     </state>
     <state x="706" y="140" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900/1440.0.1440.900@0.0.1440.900" timestamp="1603635730746" />
-    <state x="2146" y="140" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900/1440.0.1440.900@1440.0.1440.900" timestamp="1605101881179" />
+    <state x="2146" y="140" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900/1440.0.1440.900@1440.0.1440.900" timestamp="1605120134140" />
     <state x="706" y="140" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1603041998262" />
     <state x="511" y="291" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1603037633132">
       <screen x="0" y="0" width="1440" height="900" />
@@ -314,10 +336,10 @@
     <state x="1035" y="222" key="AndroidCreateXmlResourceDialog/0.0.1440.900/1440.0.1440.900@0.0.1440.900" timestamp="1605007811007" />
     <state x="1996" y="257" key="AndroidCreateXmlResourceDialog/0.0.1440.900/1440.0.1440.900@1440.0.1440.900" timestamp="1605106785397" />
     <state x="556" y="257" key="AndroidCreateXmlResourceDialog/0.0.1440.900@0.0.1440.900" timestamp="1602105670481" />
-    <state x="1623" y="0" key="CommitChangelistDialog2" timestamp="1605107589024">
+    <state x="1623" y="0" key="CommitChangelistDialog2" timestamp="1605114309727">
       <screen x="1440" y="0" width="1440" height="900" />
     </state>
-    <state x="1623" y="0" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1440.900@1440.0.1440.900" timestamp="1605107589024" />
+    <state x="1623" y="0" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1440.900@1440.0.1440.900" timestamp="1605114309727" />
     <state x="183" y="0" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1602137802026" />
     <state width="452" height="618" key="DebuggerActiveHint" timestamp="1603051001363">
       <screen x="0" y="0" width="1440" height="900" />
@@ -380,10 +402,10 @@
     </state>
     <state width="1005" height="2" key="GridCell.Tab.1.right/0.0.1440.900/1440.0.1440.900@1440.0.1440.900" timestamp="1605111198738" />
     <state width="1397" height="111" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1603049669627" />
-    <state x="1752" y="179" key="Vcs.Push.Dialog.v2" timestamp="1605107836623">
+    <state x="1752" y="179" key="Vcs.Push.Dialog.v2" timestamp="1605114320930">
       <screen x="1440" y="0" width="1440" height="900" />
     </state>
-    <state x="1752" y="179" key="Vcs.Push.Dialog.v2/0.0.1440.900/1440.0.1440.900@1440.0.1440.900" timestamp="1605107836623" />
+    <state x="1752" y="179" key="Vcs.Push.Dialog.v2/0.0.1440.900/1440.0.1440.900@1440.0.1440.900" timestamp="1605114320930" />
     <state x="312" y="179" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1602137893821" />
     <state x="1976" y="228" key="chooseDestDirectoryDialog" timestamp="1605085717766">
       <screen x="1440" y="0" width="1440" height="900" />
@@ -395,14 +417,14 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="798" y="174" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1601916759042" />
-    <state x="106" y="-17" width="1156" height="851" maximized="true" key="dock-window-1" timestamp="1605109815656">
+    <state x="158" y="-26" width="1156" height="851" maximized="true" key="dock-window-1" timestamp="1605126070255">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="106" y="-17" width="1156" height="851" maximized="true" key="dock-window-1/0.0.1440.900/1440.0.1440.900@1440.0.1440.900" timestamp="1605109815656" />
-    <state x="1534" y="-8" width="1156" height="851" maximized="true" key="dock-window-2" timestamp="1605114267404">
+    <state x="158" y="-26" width="1156" height="851" maximized="true" key="dock-window-1/0.0.1440.900/1440.0.1440.900@1440.0.1440.900" timestamp="1605126070255" />
+    <state x="1459" y="88" width="1156" height="851" key="dock-window-2" timestamp="1605115172346">
       <screen x="1440" y="0" width="1440" height="900" />
     </state>
-    <state x="1534" y="-8" width="1156" height="851" maximized="true" key="dock-window-2/0.0.1440.900/1440.0.1440.900@1440.0.1440.900" timestamp="1605114267404" />
+    <state x="1459" y="88" width="1156" height="851" key="dock-window-2/0.0.1440.900/1440.0.1440.900@1440.0.1440.900" timestamp="1605115172346" />
     <state x="338" y="189" key="psd.add.library.dependency.panel.dimension" timestamp="1601839206471">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
