@@ -1,9 +1,6 @@
 package adapters;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.view.LayoutInflater;
@@ -16,13 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.celeste.Landmarks;
-import com.celeste.MapsRoute;
 import com.celeste.fitnessapp.R;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.sdsmdg.tastytoast.TastyToast;
 
 import java.io.IOException;
 import java.util.List;

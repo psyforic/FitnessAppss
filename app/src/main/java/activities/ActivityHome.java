@@ -84,7 +84,7 @@ public class ActivityHome extends FragmentActivity implements OnMapReadyCallback
 
     //to get location permissions.
     private final static int LOCATION_REQUEST_CODE = 23;
-    final String[] placesType = {"stadium", "school",
+    final String[] placesType = {"historic", "natural",
             "shopping_mall",
             "museum",
             "railway_construction",
@@ -127,7 +127,7 @@ public class ActivityHome extends FragmentActivity implements OnMapReadyCallback
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     DocumentReference userDocument =
             firebaseFirestore.collection("users").document(firebaseUser.getUid()).collection("Landmarks").document();
-    String[] names = {"Stadium", "School",
+    String[] names = {"Historic", "Natural",
             "Shopping Mall",
             "Museum",
             "Railway Construction",
@@ -287,19 +287,20 @@ public class ActivityHome extends FragmentActivity implements OnMapReadyCallback
         fab_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PackageManager packageManager = getApplicationContext().getPackageManager();
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                try {
-                    GeoPoint geoPoint = new GeoPoint(myLocation.getLatitude(), myLocation.getLongitude());
-                    String url = "https://api.whatsapp.com/send?= " + "&text=" + URLEncoder.encode(String.valueOf(geoPoint));
-                    i.setPackage("com.whatsapp");
-                    i.setData(Uri.parse(url));
-                    if (i.resolveActivity(packageManager) != null) {
-                        getApplicationContext().startActivity(i);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+               PackageManager packageManager = getApplicationContext().getPackageManager();
+               Intent i = new Intent(Intent.ACTION_VIEW);
+               try {
+                   Location geoPoint = new Location(myLocation.getLatitude() / 1E6 + "," + myLocation.getLongitude() / 1E6);
+                   String url = "https://api.whatsapp.com/send?= " + "&text=" + URLEncoder.encode(String.valueOf(geoPoint));
+                   i.setPackage("com.whatsapp");
+                   i.setData(Uri.parse(url));
+                   if (i.resolveActivity(packageManager) != null) {
+                       getApplicationContext().startActivity(i);
+                   }
+               } catch (Exception e) {
+                   e.printStackTrace();
+               }
+
             }
         });
         fab_favs.setOnClickListener(new View.OnClickListener() {
@@ -313,16 +314,16 @@ public class ActivityHome extends FragmentActivity implements OnMapReadyCallback
         btnFind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    //Get Selected position
-                    int i = spinner.getSelectedItemPosition();
-                    String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json" +
-                            "?location=" + myLocation.getLatitude() + "," + myLocation.getLongitude() +
-                            "&radius=15000" +
-                            "&types=" + placesType[i] +
-                            "&sensor=true" +
-                            "&key=" + getResources().getString(R.string.google_maps_key);
-                    //Execute place task method to download json data
-                    new PlaceTask().execute(url);
+                //Get Selected position
+                int i = spinner.getSelectedItemPosition();
+                String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json" +
+                        "?location=" + myLocation.getLatitude() + "," + myLocation.getLongitude() +
+                        "&radius=15000" +
+                        "&types=" + placesType[i] +
+                        "&sensor=true" +
+                        "&key=" + getResources().getString(R.string.google_maps_key);
+                //Execute place task method to download json data
+                new PlaceTask().execute(url);
             }
         });
     }

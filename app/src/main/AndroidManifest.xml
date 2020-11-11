@@ -47,14 +47,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCWSGKaqi-ksbt79RmDc7RCZ0HES7EWyqg" />
-        <activity
-            android:name="com.celeste.MapsActivity"
-            android:label="@string/title_activity_maps" />
+
         <activity
             android:name="activities.ActivityRegister"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="com.celeste.MapsRoute"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="activities.ActivityLogin"
