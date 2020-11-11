@@ -129,6 +129,5 @@ public class ActivityRegister extends AppCompatActivity {
     public void onLoginClick(View view) {
         startActivity(new Intent(ActivityRegister.this, ActivityLogin.class));
         overridePendingTransition(R.anim.slide_in_left, android.R.anim.slide_out_right);
-
     }
 }

@@ -218,11 +218,10 @@ public class NearbyLandMarksActivity extends AppCompatActivity implements OnMapR
                 int i = spinner.getSelectedItemPosition();
                 String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json" +
                         "?location=" + currentLat + "," + currentLong +
-                        "&radius=5000" +
+                        "&radius=50000" +
                         "&types=" + placesType[i] +
                         "&sensor=true" +
                         "&key=" + getResources().getString(R.string.google_maps_key);
-
                 //Execute place task method to download json data
                 new PlaceTask().execute(url);
             }
@@ -270,18 +269,6 @@ public class NearbyLandMarksActivity extends AppCompatActivity implements OnMapR
                             markerOptions = new MarkerOptions().position(new LatLng(currentLat, currentLong)).title("I am here");
                             map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(currentLat, currentLong), 10));
                             map.addMarker(markerOptions);
-//                            map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
-//                                @Override
-//                                public void onMyLocationChange(Location location) {
-//
-//                                    myLocation = location;
-//                                    LatLng ltlng = new LatLng(location.getLatitude(), location.getLongitude());
-//
-//                                    CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(
-//                                            ltlng, 2f);
-//                                    map.animateCamera(cameraUpdate);
-//                                }
-//                            });
                         }
                     });
                 }

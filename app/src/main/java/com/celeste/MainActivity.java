@@ -1,17 +1,22 @@
 package com.celeste;
 
+import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import com.celeste.fitnessapp.R;
@@ -26,6 +31,9 @@ import com.sdsmdg.tastytoast.TastyToast;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
+
+import fragments.FragmentBottomSheetDialogFull;
 
 public class MainActivity extends AppCompatActivity {
     EditText etSource, etDestination;
@@ -38,18 +46,27 @@ public class MainActivity extends AppCompatActivity {
     double miles, kilometres;
     CardView btn_maps;
     CardView bt_landmarks;
+    CardView btn_settings;
+    CardView bt_profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initToolbar();
         initComponent();
         setDistance();
     }
-
+    private void initToolbar() {
+        Toolbar toolbar = findViewById(R.id.include);
+        toolbar.setTitle("Home");
+        setSupportActionBar(toolbar);
+    }
     private void initComponent() {
         btn_maps = findViewById(R.id.btn_maps);
         bt_landmarks = findViewById(R.id.bt_landmarks);
+        btn_settings = findViewById(R.id.btn_settings);
+        bt_profile = findViewById(R.id.btn_profile);
         etSource = findViewById(R.id.etSource);
         etDestination = findViewById(R.id.etDestination);
         tvDistance = findViewById(R.id.tvDistance);
@@ -76,9 +93,40 @@ public class MainActivity extends AppCompatActivity {
         bt_landmarks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TastyToast.makeText(getApplicationContext(),"Coming soon...",TastyToast.LENGTH_LONG,TastyToast.DEFAULT).show();
+                startActivity(new Intent(MainActivity.this, ActivityFavoritePlaces.class));
             }
         });
+        btn_settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TastyToast.makeText(getApplicationContext(), "Coming soon...", TastyToast.LENGTH_LONG, TastyToast.DEFAULT).show();
+            }
+        });
+        bt_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.action_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.actions:
+                Toast.makeText(getApplicationContext(), "Item 1 Selected", Toast.LENGTH_LONG).show();
+                FragmentBottomSheetDialogFull fragment = new FragmentBottomSheetDialogFull();
+                fragment.show(getSupportFragmentManager(), fragment.getTag());
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void setDistance() {

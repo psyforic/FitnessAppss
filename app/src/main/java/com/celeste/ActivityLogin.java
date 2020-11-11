@@ -47,13 +47,14 @@ public class ActivityLogin extends AppCompatActivity {
     CallbackManager callbackManager = CallbackManager.Factory.create();
     ProgressBar loadingProgressBar;
     TextInputLayout inputLayoutEmail, inputLayoutPassword;
-    private TextView register;
+    FirebaseAuth.AuthStateListener mAuthListener;
+    private TextView register, forgotPassword;
     private EditText etEmail, etPassword;
     private FirebaseAuth mAuth;
     private String TAG = "TAG";
     private GoogleSignInClient mGoogleSignInClient;
     private LoginButton login_button;
-    FirebaseAuth.AuthStateListener mAuthListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,8 +67,7 @@ public class ActivityLogin extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     startActivity(new Intent(ActivityLogin.this, MainActivity.class));
-                } else
-                {
+                } else {
                     // do something
                 }
             }
@@ -82,12 +82,12 @@ public class ActivityLogin extends AppCompatActivity {
     }
 
     private void initComponent() {
-       loadingProgressBar = findViewById(R.id.loadingProgressBar);
+        loadingProgressBar = findViewById(R.id.loadingProgressBar);
         etEmail = findViewById(R.id.editTextEmail);
         etPassword = findViewById(R.id.editTextPassword);
         register = findViewById(R.id.register);
         btnLogin = findViewById(R.id.btnLoginButton);
-//        loginGoogle = findViewById(R.id.loginGoogle);
+        forgotPassword = findViewById(R.id.forgotPassword);
         inputLayoutEmail = findViewById(R.id.textInputEmail);
         inputLayoutPassword = findViewById(R.id.textInputPassword);
         login_button = findViewById(R.id.login_button);
@@ -119,10 +119,16 @@ public class ActivityLogin extends AppCompatActivity {
                 signInUser();
             }
         });
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ActivityLogin.this, ActivityForgotPassword.class));
+            }
+        });
     }
 
     private void signInUser() {
-       loadingProgressBar.setVisibility(View.VISIBLE);
+        loadingProgressBar.setVisibility(View.VISIBLE);
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
         if (email.isEmpty()) {
@@ -247,11 +253,13 @@ public class ActivityLogin extends AppCompatActivity {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
     }
+
     @Override
     protected void onStop() {
         super.onStop();
         mAuth.removeAuthStateListener(mAuthListener);
     }
+
     private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credential)
@@ -276,8 +284,9 @@ public class ActivityLogin extends AppCompatActivity {
                 });
     }
 
-    private void onLoginClick(View view) {
-
+    public void onLoginClick(View view) {
+        startActivity(new Intent(ActivityLogin.this, ActivityRegister.class));
+        overridePendingTransition(R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 
 }

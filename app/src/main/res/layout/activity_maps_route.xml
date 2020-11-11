@@ -5,13 +5,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.celeste.MapsRoute">
+    tools:context="com.celeste.MapsRoute"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <LinearLayout
+        android:elevation="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@android:drawable/editbox_background" />
+
+        <Button
+            android:id="@+id/btn_find"
+            style="@style/MessengerButtonText.Blue"
+            android:layout_width="144dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:text="Find Landmark" />
+    </LinearLayout>
 
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
 
     <View
         android:id="@+id/back_drop"
@@ -21,16 +45,17 @@
         android:clickable="true"
         android:fitsSystemWindows="true"
         app:layout_anchor="@+id/map"
-        app:layout_anchorGravity="center" />
+        app:layout_anchorGravity="center"
+        android:focusable="true" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom|right"
-        android:gravity="end|right"
+        android:layout_marginBottom="50dp"
+        android:layout_gravity="bottom|end"
+        android:gravity="end"
         android:orientation="vertical">
 
         <LinearLayout
@@ -44,17 +69,19 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|end|right"
                 android:layout_margin="@dimen/spacing_middle"
-                app:cardBackgroundColor="@android:color/white"
+                app:cardBackgroundColor="@color/com_facebook_messenger_blue"
                 app:cardCornerRadius="3dp"
                 app:cardElevation="2dp"
-                app:contentPadding="@dimen/spacing_medium">
+                app:contentPadding="@dimen/spacing_medium"
+                tools:ignore="RtlHardcoded">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Save landmark"
+                    android:textColor="@color/whiteTextColor"
+                    android:text="@string/save_landmark"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
             </androidx.cardview.widget.CardView>
@@ -69,16 +96,19 @@
                 android:layout_marginBottom="@dimen/spacing_middle"
                 android:clickable="true"
                 android:src="@drawable/ic_save_landmark"
-                android:tint="@color/quantum_grey900"
-                app:backgroundTint="@android:color/white"
+                android:tint="@android:color/white"
+                app:backgroundTint="@color/com_facebook_messenger_blue"
                 app:fabSize="mini"
-                app:rippleColor="@android:color/black" />
+                app:rippleColor="@android:color/black"
+                android:focusable="true"
+                android:contentDescription="@string/app_name" />
 
             <View
                 android:layout_width="@dimen/spacing_xmedium"
                 android:layout_height="0dp" />
 
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/lyt_calc"
             android:layout_width="wrap_content"
@@ -90,17 +120,19 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|end|right"
                 android:layout_margin="@dimen/spacing_middle"
-                app:cardBackgroundColor="@android:color/white"
+                app:cardBackgroundColor="@color/com_facebook_messenger_blue"
                 app:cardCornerRadius="3dp"
                 app:cardElevation="2dp"
-                app:contentPadding="@dimen/spacing_medium">
+                app:contentPadding="@dimen/spacing_medium"
+                tools:ignore="RtlHardcoded">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Caluclate distance"
+                    android:textColor="@color/whiteTextColor"
+                    android:text="@string/caluclate_distance"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
             </androidx.cardview.widget.CardView>
@@ -115,16 +147,19 @@
                 android:layout_marginBottom="@dimen/spacing_middle"
                 android:clickable="true"
                 android:src="@drawable/ic_calculate"
-                android:tint="@color/quantum_grey900"
-                app:backgroundTint="@android:color/white"
+                android:tint="@android:color/white"
+                app:backgroundTint="@color/com_facebook_messenger_blue"
                 app:fabSize="mini"
-                app:rippleColor="@android:color/black" />
+                app:rippleColor="@android:color/black"
+                android:focusable="true"
+                android:contentDescription="@string/app_name" />
 
             <View
                 android:layout_width="@dimen/spacing_xmedium"
                 android:layout_height="0dp" />
 
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/lyt_show_route"
             android:layout_width="wrap_content"
@@ -136,17 +171,19 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|end|right"
                 android:layout_margin="@dimen/spacing_middle"
-                app:cardBackgroundColor="@android:color/white"
+                app:cardBackgroundColor="@color/com_facebook_messenger_blue"
                 app:cardCornerRadius="3dp"
                 app:cardElevation="2dp"
-                app:contentPadding="@dimen/spacing_medium">
+                app:contentPadding="@dimen/spacing_medium"
+                tools:ignore="RtlHardcoded">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Show route"
+                    android:text="@string/show_route"
+                    android:textColor="@color/whiteTextColor"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
             </androidx.cardview.widget.CardView>
@@ -161,10 +198,12 @@
                 android:layout_marginBottom="@dimen/spacing_middle"
                 android:clickable="true"
                 android:src="@drawable/ic_directions"
-                android:tint="@color/quantum_grey900"
-                app:backgroundTint="@android:color/white"
+                android:tint="@android:color/white"
+                app:backgroundTint="@color/com_facebook_messenger_blue"
                 app:fabSize="mini"
-                app:rippleColor="@android:color/black" />
+                app:rippleColor="@android:color/black"
+                android:focusable="true"
+                android:contentDescription="@string/app_name" />
 
             <View
                 android:layout_width="@dimen/spacing_xmedium"
@@ -181,22 +220,13 @@
             android:layout_marginRight="@dimen/spacing_smlarge"
             android:layout_marginBottom="@dimen/spacing_middle"
             android:clickable="true"
-            android:src="@drawable/ic_more"
+            android:src="@drawable/ic_read_more"
             android:tint="@android:color/white"
             app:backgroundTint="@color/colorPrimary"
             app:fabSize="normal"
-            app:rippleColor="@android:color/white" />
+            app:rippleColor="@android:color/white"
+            android:contentDescription="@string/app_name"
+            android:focusable="true" />
 
     </LinearLayout>
-    <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-    <!--        android:id="@+id/fab"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="68dp"-->
-    <!--        android:layout_gravity="bottom|right"-->
-    <!--        android:layout_marginEnd="20dp"-->
-    <!--        android:layout_marginBottom="20dp"-->
-    <!--        android:clickable="true"-->
-    <!--        android:elevation="5dp"-->
-    <!--        android:src="@drawable/ic_more"-->
-    <!--        app:elevation="20dp" />-->
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

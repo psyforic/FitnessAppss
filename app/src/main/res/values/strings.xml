@@ -6,6 +6,20 @@
     <string name="fb_login_protocol_scheme">fb701654833891571</string>
     <string name="title_activity_maps">Map</string>
     <string name="profile">Profile</string>
+    <string name="lbl_image">Image</string>
+    <string name="str_no_data">Could not find any saved favorite places</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="save_landmark">Save landmark</string>
+    <string name="caluclate_distance">Caluclate distance</string>
+    <string name="show_route">Show route</string>
+    <string name="lbl_forgot_password">Forgot password?</string>
+    <string name="btn_forgot_password">Forgot your password?</string>
+    <string name="btn_reset_password">Reset Password</string>
+    <string name="btn_back"><![CDATA[<< Back]]></string>
+    <string name="forgot_password_msg">We just need your registered email address to send you password reset instructions.</string>
+    <string name="forgot_password"> Forgot Password?</string>
+    <string name="todo">TODO</string>
+
     <!--for facebook login-->
 
     <!--facebook login ends-->

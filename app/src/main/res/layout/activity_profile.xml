@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,7 +21,9 @@
             android:text="Account Info"
             android:textAlignment="center" />
 
-        <RelativeLayout style="@style/profileDetailsLayout">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp">
 
             <ImageView
                 android:id="@+id/organization"
@@ -45,7 +47,9 @@
 
         <View style="@style/proifleDetailsView" />
 
-        <RelativeLayout style="@style/profileDetailsLayout">
+        <RelativeLayout
+            style="@style/profileDetailsLayout"
+            android:layout_height="43dp">
 
             <ImageView
                 android:id="@+id/nameImageView"
@@ -81,6 +85,7 @@
 
             <TextView
                 style="@style/profileDetailsTextMain"
+                android:layout_marginStart="18dp"
                 android:layout_toRightOf="@id/mobileImageView"
                 android:text="Mobile" />
 
@@ -159,4 +164,4 @@
 
     </LinearLayout>
 
-</androidx.core.widget.NestedScrollView>
+</LinearLayout>

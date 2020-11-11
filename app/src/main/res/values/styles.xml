@@ -55,7 +55,7 @@
     </style>
 
     <style name="viewParent.headerText">
-        <item name="android:textColor">@color/contentTextColor</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:textSize">@dimen/headerTextSize</item>
         <item name="android:textStyle">bold</item>
     </style>
@@ -65,8 +65,8 @@
     </style>
 
     <style name="parent">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
     </style>
     <style name="parentProfile">
         <item name="android:layout_width">match_parent</item>
@@ -81,7 +81,7 @@
     <style name="profileDetailsLayout" parent="parentProfile">
         <item name="android:layout_marginTop">20dp</item>
     </style>
-
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
     <style name="profileDetailsImage">
         <item name="android:layout_width">40dp</item>
         <item name="android:layout_height">40dp</item>
@@ -102,7 +102,15 @@
         <item name="android:textSize">14sp</item>
         <item name="android:layout_marginLeft">10dp</item>
     </style>
-
+    <style name="RippleStyleBlack" parent="RippleStyleWhite">
+        <item name="mrl_rippleColor">#8096989A</item>
+    </style>
+    <style name="RippleStyleWhite">
+        <item name="mrl_rippleOverlay">true</item>
+        <item name="mrl_rippleColor">#80FFFFFF</item>
+        <item name="mrl_rippleHover">true</item>
+        <item name="mrl_rippleAlpha">0.2</item>
+    </style>
     <style name="proifleDetailsView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">2dp</item>
@@ -125,5 +133,13 @@
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:paddingLeft">5dp</item>
     </style>
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- Used for the buttons -->
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <!-- Used for the title and text -->
+        <item name="android:textColorPrimary">#000</item>
 
+        <item name="android:background">#FFFFFF</item>
+        <item name="android:textColor">@null</item>
+        <item name="android:textSize">@null</item> </style>
 </resources>
